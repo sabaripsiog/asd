@@ -17,45 +17,36 @@ html, body{
     position: relative;
     overflow-y: auto;
 }
-.nav{
-    width: 20em;
+.navbar{
+    width: 100%;
     height: auto;
     position: absolute;
-    top: 15%;
-    left: 0;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
 }
-.nav a{
-    text-decoration: none;
+.navbar a{
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 2em;
-    font-family: Arial;
-    font-weight: bold;
-    height: 1.6em;
-    margin: 0.2em 0;
-    float: left;
-    display: inline-block;
-    line-height: 1.6;
-    background-color: wheat;
-    color: blue;
     text-align: center;
-    transition: 400ms;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5em 1em;
 }
-
-a.active,.nav a:hover{
-    background-color:white;
-    width: 100%;
+.navbar a:hover{
+    background-color: white;
+    color: black;
 }
-.a{
-    width:105%;
+@media screen and (max-width: 60em)
+{
+    .navbar{
+        flex-direction: column;
+    }
 }
-.b{
-    width: 90%;
-}
-.c{
-    width: 85%;
-}
-.d{
-    width: 90%;
-}
-.e{
-    width: 95%;
+img{
+    float: right;
+    padding: 8em;
+    width: 18em;
+    height: 25em;
 }
