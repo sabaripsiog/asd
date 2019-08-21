@@ -3,51 +3,23 @@
     <head>
         <title>Aggregate report</title>
         <link rel="stylesheet" href="styling.css" type="text/css">
+        <script src="script.js" method="post"></script>
     </head>
         <body>
+            Enter student marks:
+            <input type="number" id="mark1">
+            <input type="number" id="mark2">
+            <input type="number" id="mark3">
+            <input type="number"id="mark4">
             
-            <form>
-                <h1><u>Bright Angels School</u></h1>
-                <h3><u>REPORT</u></h3>
-                <table>
-                    <tr>
-                        <td>STUDENT ID:</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>GRADE:</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>DIVISION:</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>MARKS IN ENGLISH:</td>
-                        <td><input type="text" id="mark1"></td>
-                    </tr>
-                    <tr>
-                        <td>MARKS IN MATHEMATICS:</td>
-                        <td><input type="text" id="mark2"></td>
-                    </tr>
-                    <tr>
-                        <td>MARKS IN SCIENCE:</td>
-                        <td><input type="text" id="mark3"></td>
-                    </tr>
-                    <tr>
-                        <td>MARKS IN SOCIAL STUDIES:</td>
-                        <td><input type="text" id="mark4"></td>
-                    </tr>
-                </table>
-                <button>Submit</button>
-            </form>
-        <script>
-            var m1 = document.getElementById("mark1").value;
-            var m2 = document.getElementById("mark2").value;
-            var m3 = document.getElementById("mark3").value;
-            var m4 = document.getElementById("mark4").value;
-            var sum = m1+m2+m3+m4;
-            document.write(sum);
-        </script>
+            <button id="but" onclick='func()'>Submit</button>
+            <p>sum:</p>
+            <input type="number" id="demo">
+            <p>Average:</p>
+            <input type="number" id="dem">
+            <p>Pass:</p>
+            <input type="number" id="pass">
+            <p>Fail:</p>
+            <input type="number" id="fail">
         </body>
 </html>
