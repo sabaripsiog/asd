@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Html CRUD with Pure JavaScript
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Star Supermarket</h1>
+    <table id="entry"> 
+        <tr>
+            <td>
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" name="form1">
+                    <div>
+                        <label>Item Name</label><label class="validation-error hide" id="itemNameValidationError">This field is required.</label>
+                        <input type="text" name="itemName" id="itemName">
+                    </div>
+                    <div>
+                        <label>Category</label>
+                        <input type="text" name="category" id="category">
+                    </div>
+                    <div>
+                        <label>Price(per unit)</label>
+                        <input type="number" name="price" id="price">
+                    </div>
+                    <div>
+                        <label>Available units</label>
+                        <input type="number" name="available" id="available">
+                    </div>
+                    <div  class="form-action-buttons">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <div class="search-container">
+        <input type="text" placeholder="Search.." id="search"  onkeyup="search_record()">
+    </div>
+    <button id="undo" onclick="undo()">Undo</button>
+    <table class="list" id="itemList">
+        <thead>
+            <tr>
+                <th><input type="checkbox" onclick="select_all(this)">All</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Available units</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+
+        </tbody>
+    </table>
+    <div class="abc">
+    <button onclick="prevPage()" id="btn_prev">Prev</button>
+    <button onclick="nextPage()" id="btn_next">Next</button>
+    <button onclick="delete_selected()" id="delete">Delete selected</button></div>
+    <p>Current page:<span id="page"></span></p>
+    <input type="number" id="pnum" placeholder="Records per page as you wish">
+    <input type="submit" value ="Display" id="recperpage" onclick="dis()">
+    <script src="script.js"></script>
+    <script src="pagination.js"></script>
+</body>
+
+</html>
