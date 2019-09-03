@@ -8,14 +8,47 @@ var pp=[0,0,0,0,0,0,0,0,0,0,0,0,0];
 var y;
 var totalpass=0,totalfail=0,passpp=0;
 
-function func()
+function validate()
 {
 	grade[i]=document.getElementById("gr").value;
 	y=grade[i];
     m1=parseInt(document.getElementById("mark1").value);
     m2=parseInt(document.getElementById("mark2").value);
     m3=parseInt(document.getElementById("mark3").value);
-    m4=parseInt(document.getElementById("mark4").value);
+	m4=parseInt(document.getElementById("mark4").value);
+	if(m1 == "" || m2 =="" || m3 == "" || m4 == "")
+	{
+		alert("Enter all marks");
+		return false;
+	}else if(m1<0 || m1>100)
+	{
+		alert("Enter proper marks for English");
+		return false;
+	}else if(m2<0 || m2>100)
+	{
+		alert("Enter proper marks for Mathematics");
+		return false;
+	}else if(m3<0 || m3>100)
+	{
+		alert("Enter proper marks for Science");
+		return false;
+	}else if(m4<0 || m4>100)
+	{
+		alert("Enter proper marks for Social Studies");
+		return false;
+	}else{
+		func();
+		return true;
+	}
+}
+
+
+function func()
+{
+	grade[i]=document.getElementById("gr").value;
+	y=grade[i];
+    
+    //validate();
     var sum=m1+m2+m3+m4;
     document.getElementById("demo").value=sum;
     var average=(sum/4);
@@ -32,7 +65,8 @@ function func()
     }
 	pp[y]=(pass[y]/total[y])*100;
 	pp[y]=pp[y].toFixed(0);
-}
+    }
+
 function display()
 {   
     var u="<hr>"
