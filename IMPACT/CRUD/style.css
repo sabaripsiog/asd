@@ -1,7 +1,15 @@
+body{
+	width:100%;
+	height:100%;
+	background-image:url(supermarket.jpg);
+	background-size:100%;
+	font-weight: bold;
+}
 
 body > table{
     width: 40%;
     float: left;
+	background-color: wheat;
 }
 
 h1{
@@ -22,7 +30,7 @@ table.list{
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid black;
     text-align: left;
     padding: 8px;
 }
@@ -35,7 +43,7 @@ input[type=text], input[type=number] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -115,6 +123,20 @@ label.validation-error{
     width:8%;
 }
 #recperpage:hover
+{
+    background-color: red;
+    color: white;
+}
+label
+{
+font-weight:bold;
+font-size:1em;
+}
+#undo{
+	float:left;
+	margin-left:1%;
+}
+#submit:hover
 {
     background-color: red;
     color: white;
