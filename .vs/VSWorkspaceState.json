@@ -2,9 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\IMPACT",
+<<<<<<< HEAD
     "\\IMPACT\\Assignment 1",
     "\\IMPACT\\Assignment 1\\Personal website"
   ],
   "SelectedNode": "\\IMPACT\\Assignment 1\\Personal website",
+=======
+    "\\IMPACT\\Flowchart",
+    "\\IMPACT\\Flowchart\\source"
+  ],
+  "SelectedNode": "\\IMPACT\\Flowchart\\source\\script.js",
+>>>>>>> bfa471f8a32c47a190680eec1dbe737fdfba16ce
   "PreviewInSolutionExplorer": false
 }
