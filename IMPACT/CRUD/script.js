@@ -143,7 +143,7 @@ function onDelete(td) {
         document.getElementById("itemList").deleteRow(row.rowIndex);
         resetForm();
         document.getElementById("undo").disabled = false;
-        //objectCopy.splice(index_deleted_row-1,1);
+        objectCopy.splice(index_deleted_row-1,1);
         return index_deleted_row;
     }
 }
