@@ -64,7 +64,18 @@ function readFormData() {
     formData["available"] = document.getElementById("available").value;
     return formData;
 }
-
+function duplicate(data)
+{ 
+    for(i=0;i<=Object.keys(objectCopy).length;i++)
+    {
+      if(data.itemName==objectCopy[i].itemName)
+      {
+          alert("Record already exists");
+      }else{
+          insertNewRecord(data);
+      }
+    }
+}    
 function insertNewRecord(data) {
     
     var table = document.getElementById("itemList").getElementsByTagName('tbody')[0];
@@ -90,7 +101,8 @@ function insertNewRecord(data) {
     obj["available"]= data.available;
     database.push(obj);
     objectCopy.push(obj);
-
+    
+    
     current_page = numPages();
         deleteall();
         changePage(current_page);
@@ -137,38 +149,33 @@ function onDelete(td) {
     if (confirm('Are you sure to delete this record ?')) {
         row = td.parentElement.parentElement;
         y= row.rowIndex;
-        index_deleted_row= ((current_page-1)*records_per_page) + y ;
-     
-
-        document.getElementById("itemList").deleteRow(row.rowIndex);
-        resetForm();
-        document.getElementById("undo").disabled = false;
+        index_deleted_row = ((current_page-1)*records_per_page) + y ;
+        
+        
         objectCopy.splice(index_deleted_row-1,1);
-        return index_deleted_row;
+        resetForm();
+        deleteall();
+        changePage(current_page);
+        document.getElementById("undo").disabled = false;
+        
+       
     }
 }
 
-var value=onDelete(td);
-function undo(data)
+function undo()
 {
-    var table1 = document.getElementById("itemList").getElementsByTagName('tbody')[0];
-    //index_deleted_row=table1.insertRow(table1.length);
-    var newrow1 = table1.insertRow(index_deleted_row-1);
-    cell1 = newrow1.insertCell(0);
-    cell1.innerHTML = `<input type="checkbox">`;
-    cell2 = newrow1.insertCell(1);
-    cell2.innerHTML = objectCopy[index_deleted_row-1].itemName;
-    cell3 = newrow1.insertCell(2);
-    cell3.innerHTML = objectCopy[index_deleted_row-1].category;
-    cell4 = newrow1.insertCell(3);
-    cell4.innerHTML = objectCopy[index_deleted_row-1].price;
-    cell5 = newrow1.insertCell(4);
-    cell5.innerHTML = objectCopy[index_deleted_row-1].available;
-    cell5 = newrow1.insertCell(5);
-    cell5.innerHTML = `<a onClick="onRead(this)">Read</a>
-                       <a onClick="onEdit(this)">Edit</a>
-                       <a onClick="onDelete(this)">Delete</a>`;   
-        
+    var obj={};
+    obj["itemName"]= database[index_deleted_row-1].itemName;
+    obj["category"]= database[index_deleted_row-1].category;
+    obj["price"]= database[index_deleted_row-1].price;
+    obj["available"]= database[index_deleted_row-1].available;
+    objectCopy.splice(index_deleted_row-1,0,obj);
+    resetForm();
+    deleteall();
+    changePage(current_page);
+    document.getElementById("undo").disabled = true;
+    
+    
 }
 
 function validate() {
