@@ -66,15 +66,15 @@ function readFormData() {
 }
 function duplicate(data)
 { 
+    datavalue=true;
     for(i=0;i<=Object.keys(objectCopy).length;i++)
     {
       if(data.itemName==objectCopy[i].itemName)
       {
-          alert("Record already exists");
-      }else{
-          insertNewRecord(data);
-      }
+          datavalue=false;
+	  }
     }
+	alert("Record already exists");
 }    
 function insertNewRecord(data) {
     
