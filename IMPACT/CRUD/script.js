@@ -49,7 +49,7 @@ function onFormSubmit() {
     if (validate()) {
         var formData = readFormData();
         if (selectedRow == null)
-            insertNewRecord(formData);
+            duplicate(formData);
         else
             updateRecord(formData);
         resetForm();
@@ -65,16 +65,23 @@ function readFormData() {
     return formData;
 }
 function duplicate(data)
-{ 
-    datavalue=true;
-    for(i=0;i<=Object.keys(objectCopy).length;i++)
+{   
+    var datavalue =0;
+    for(i=0;i<Object.keys(objectCopy).length;i++)
     {
       if(data.itemName==objectCopy[i].itemName)
       {
-          datavalue=false;
-	  }
+        
+        datavalue=1;
+        break;
+      }
     }
-	alert("Record already exists");
+	if(datavalue==1){
+        alert("Record already exists");
+        datavalue=0;
+    }else{
+        insertNewRecord(data);
+    }
 }    
 function insertNewRecord(data) {
     
@@ -195,12 +202,24 @@ function validate() {
     {
         isValid = false;
         alert("Available units should be entered.");
-    }else {
-        isValid = true;
-        if (!document.getElementById("itemNameValidationError").classList.contains("hide"))
-            document.getElementById("itemNameValidationError").classList.add("hide");
     }
-      
+    else{
+
+    if(isNaN(document.getElementById("itemName").value))
+    {
+        isValid = true;
+    }else{
+        isValid=false;
+        alert("Item name should not be a number.")
+    }
+    if(isNaN(document.getElementById("category").value))
+    {
+        isValid = true;
+    }else{
+        isValid=false;
+        alert("Category should not be a number.")
+    }
+    }
     return isValid;
 }
 
@@ -264,3 +283,30 @@ function search_record()
     }
 }
 
+function onRead(td)
+{
+    openModal();
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("thisitem").innerHTML = selectedRow.cells[1].innerHTML;
+    document.getElementById("thiscategory").innerHTML = selectedRow.cells[2].innerHTML;
+    document.getElementById("thisprice").innerHTML = selectedRow.cells[3].innerHTML;
+    document.getElementById("thisavailable").innerHTML = selectedRow.cells[4].innerHTML;
+    
+}
+
+var modal = document.getElementById("simpleModal");
+
+function openModal()
+{
+    modal.style.display = 'block';
+}  
+
+function closeModal()
+{
+    modal.style.display = 'none';
+}  
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
