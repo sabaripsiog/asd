@@ -1,12 +1,11 @@
 var current_page = 1;
 var records_per_page =5;
-
 function dis()
 {
     if(document.getElementById("pnum").value == "" || document.getElementById("pnum").value <=0)
     {
         alert("Records per page should be a positive value");
-    } else if(document.getElementById("pnum").value >= 500)
+    } else if(document.getElementById("pnum").value > Object.keys(database).length)
     {
         alert("Enter a smaller value");
     } else {
@@ -16,7 +15,20 @@ function dis()
     changePage(current_page);
     }
 }
-
+function go_to_page()
+{
+    if(document.getElementById("goto").value == "" || document.getElementById("goto").value <=0)
+    {
+        alert("Should be a positive value");
+    } else if(document.getElementById("goto").value > numPages())
+    {
+        alert("Enter a smaller value");
+    } else {
+        current_page=document.getElementById("goto").value;
+        deleteall();
+        changePage(current_page);
+    }
+}
 function prevPage()
 {
     if (current_page > 1) {
@@ -26,7 +38,6 @@ function prevPage()
         
     }
 }
-
 function nextPage()
 {
     if (current_page < numPages()) {
@@ -35,11 +46,10 @@ function nextPage()
         changePage(current_page); 
     }
 }
-
 function changePage(page)
 {
     
-    var page_span = document.getElementById("page");
+var page_span = document.getElementById("page");
 
     // Validate page
     if (page < 1) page = 1;
@@ -80,8 +90,6 @@ function changePage(page)
     } else {
         document.getElementById("btn_next").disabled = false;
     }
-    //deleteall();
-    
 }
 
 function numPages()
@@ -99,7 +107,6 @@ window.onload = function() {
 function deleteall()
 {
 var table = document.getElementById("itemList");
-//or use : var table = document.all.tableid;
 for(var i = table.rows.length - 1; i > 0; i--)
 {
 table.deleteRow(i);
