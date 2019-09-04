@@ -22,7 +22,7 @@ function go_to_page()
         alert("Should be a positive value");
     } else if(document.getElementById("goto").value > numPages())
     {
-        alert("Enter a smaller value");
+        alert("Page not available");
     } else {
         current_page=document.getElementById("goto").value;
         deleteall();
