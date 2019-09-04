@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        Html CRUD with Pure JavaScript
+        STAR SUPERMARKET CRUD APP
     </title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -56,12 +56,48 @@
 
         </tbody>
     </table>
+
+    <div id="simpleModal" class="modal">
+        <div class="modal-content">
+           <input type="button" id="xyz" onclick="closeModal()" class="closeBtn" value="X">
+           <h2>Item Details</h2>
+           <table id="second">
+                <tr>
+                   <td>
+                   <b>Item Name</b>
+                   </td>
+                   <td id="thisitem"></td>
+                </tr>
+                <tr>
+                   <td>
+                   <b>Category</b>
+                   </td>
+                   <td id="thiscategory"></td>
+                </tr>
+                <tr>
+                    <td>
+                    <b>Price</b>
+                    </td>
+                    <td id="thisprice"></td>
+                </tr>
+                <tr>
+                    <td>
+                       <b>Available</b>
+                    </td>
+                    <td id="thisavailable"></td>
+                </tr>
+          </table>
+          
+        </div>
+    </div>
     <div class="abc">
     <button onclick="prevPage()" id="btn_prev">Prev</button>
     <button onclick="nextPage()" id="btn_next">Next</button>
     <button onclick="delete_selected()" id="delete">Delete selected</button></div>
-    <p>Current page:<span id="page"></span></p>
-    <input type="number" id="pnum" placeholder="Records per page as you wish">
+    <p>CURRENT PAGE:<span id="page"></span></p>
+    <input type="number" id="goto" placeholder="Go to page...">
+    <input type="submit" value="GO" id="gotopage" onclick="go_to_page()">
+    <input type="number" id="pnum" placeholder="Records per page as you wish...">
     <input type="submit" value ="Display" id="recperpage" onclick="dis()">
     <script src="script.js"></script>
     <script src="pagination.js"></script>
