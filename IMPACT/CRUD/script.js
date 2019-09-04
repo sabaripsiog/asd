@@ -198,10 +198,27 @@ function validate() {
     {
         isValid = false;
         alert("Price should be entered.");
-    } else if(document.getElementById("available").value == "")
+    }else if(document.getElementById("price").value < 0)
+    {
+        isValid = false;
+        alert("Price should be positive");
+    } else if(document.getElementById("price").value > 10000000)
+    {
+        isValid = false;
+        alert("Costly!!Enter a lower price.");
+    }
+    else if(document.getElementById("available").value == "")
     {
         isValid = false;
         alert("Available units should be entered.");
+    } else if(document.getElementById("available").value < 0)
+    {
+        isValid = false;
+        alert("Available units should be positive");
+    } else if(document.getElementById("available").value > 1000)
+    {
+        isValid = false;
+        alert("Enter lesser available units.");
     }
     else{
 
