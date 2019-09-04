@@ -19,7 +19,6 @@ function validate()
 	if(m1 == "" || m2 =="" || m3 == "" || m4 == "")
 	{
 		alert("Enter all marks");
-		return false;
 	}else if(m1<0 || m1>100)
 	{
 		alert("Enter proper marks for English");
