@@ -44,9 +44,7 @@ function validate()
 
 function func()
 {
-	grade[i]=document.getElementById("gr").value;
-	y=grade[i];
-    
+	
     //validate();
     var sum=m1+m2+m3+m4;
     document.getElementById("demo").value=sum;
