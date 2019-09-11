@@ -6,19 +6,19 @@ var fail=[0,0,0,0,0,0,0,0,0,0,0,0,0];
 var total=[0,0,0,0,0,0,0,0,0,0,0,0,0];
 var pp=[0,0,0,0,0,0,0,0,0,0,0,0,0];
 var y;
-var totalpass=0,totalfail=0,passpp=0;
+var totalpass=0,totalfail=0,passpp=0,tot=0;
 
 function validate()
 {
-	grade[i]=document.getElementById("gr").value;
-	y=grade[i];
+	y=document.getElementById("gr").value;
     m1=parseInt(document.getElementById("mark1").value);
     m2=parseInt(document.getElementById("mark2").value);
     m3=parseInt(document.getElementById("mark3").value);
 	m4=parseInt(document.getElementById("mark4").value);
-	if(m1 == "" || m2 =="" || m3 == "" || m4 == "")
+	if(isNaN(m1) || isNaN(m2)  || isNaN(m3)  || isNaN(m4) )
 	{
 		alert("Enter all marks");
+		return false;
 	}else if(m1<0 || m1>100)
 	{
 		alert("Enter proper marks for English");
@@ -54,11 +54,15 @@ function func()
     {
         pass[y]++;
 		total[y]++;
+		totalpass++;
+		tot++;
     }
     else
     {
         fail[y]++;
 		total[y]++;
+		totalfail++;
+		tot++;
     }
 	pp[y]=(pass[y]/total[y])*100;
 	pp[y]=pp[y].toFixed(0);
@@ -84,12 +88,6 @@ function display()
 	o+=l;
 	o+=m;
 	}
-	for(i=1;i<13;i++)
-	{
-	totalpass=totalpass+pass[i];
-	totalfail=totalfail+fail[i];
-	}
-	var tot=totalpass+totalfail;
 	if(tot!=0)
 	{
 	var passpp=(totalpass/tot)*100;
