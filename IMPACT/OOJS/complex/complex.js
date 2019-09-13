@@ -112,7 +112,6 @@ let goods = (function () {               //design pattern
     };
 })(device1.warranty);
 
-
 a = function(){ console.log(`Customer :`);}
 a();
 (function abc(){             //IIFE
