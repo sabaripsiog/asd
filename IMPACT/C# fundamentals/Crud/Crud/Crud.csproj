@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserType.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Details.cs" />
     <Compile Include="NewUser.cs" />
     <Compile Include="Login.cs" />
