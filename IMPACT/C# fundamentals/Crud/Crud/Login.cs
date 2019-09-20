@@ -63,6 +63,21 @@ namespace Crud
                 Form(Usernames);
 
             }
+            GetDetails(Usernames);
+        }
+
+        public void GetDetails(List<User> Usernames)
+        {
+            Console.WriteLine("Check whether your details are correct");
+            foreach (User u in Usernames)
+            {
+                if (uname == u.name && password == u.pass)
+                {
+                    Console.WriteLine($"Customer ID : {u.customerID}");
+                    Console.WriteLine($"Address : {u.address}");
+                    Console.WriteLine($"Type : {u.customerType}");
+                }
+            }
         }
     }
 }
