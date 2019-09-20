@@ -14,7 +14,7 @@ namespace Crud
         int userOption;
         string Getoption;
         bool Confirmval = false;
-        public void getDetails()
+        public void getDetails(List<User> Usernames)
         {
             do
             {
@@ -78,7 +78,6 @@ namespace Crud
 
                     case 2:
                         Console.Clear();
-                        getDetails();
                         break;
 
                     default:
