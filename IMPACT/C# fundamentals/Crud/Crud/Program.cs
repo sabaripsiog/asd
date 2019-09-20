@@ -22,7 +22,7 @@ namespace Crud
             UserType u1 = new UserType();
             m1.display1(Usernames);
             log.Form(Usernames);
-            info.getDetails();
+            //info.getDetails(Usernames);
             u1.select();
             Console.ReadKey();
         }
