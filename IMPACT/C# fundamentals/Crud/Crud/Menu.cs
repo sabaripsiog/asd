@@ -53,7 +53,7 @@ namespace Crud
                             passw = new1.getPass();
                             useraddress = new1.getAddress();
                             type = new1.getType();
-                            Usernames.Add(new User() { name = uname, pass = passw , address = useraddress, customerType = type, customerID = count++ , CurrentUnits = 0, PreviousUnits = 0});
+                            Usernames.Add(new User() { name = uname, pass = passw , address = useraddress, customerType = type, customerID = count+1 , CurrentUnits = 0, PreviousUnits = 0});
                             Console.Clear();
                             Console.WriteLine("Registered Successfully");
                             break;
