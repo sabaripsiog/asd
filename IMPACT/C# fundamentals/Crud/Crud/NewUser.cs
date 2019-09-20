@@ -49,14 +49,14 @@ namespace Crud
         }
         public string getType()
         {
-            Console.WriteLine("Enter Electricity type(Domestic or Commercial:");
+            Console.WriteLine("Enter Electricity type(Domestic(D) or Commercial(C):");
             customerType = Console.ReadLine();
             while (string.IsNullOrEmpty(customerType))
             {
                 Console.WriteLine("Password can't be empty! Input your password once more");
                 customerType = Console.ReadLine();
             }
-            while (customerType != "Commercial" && customerType != "Domestic" && customerType != "commercial" && customerType != "domestic")
+            while (customerType != "C" && customerType != "D" && customerType != "c" && customerType != "d")
             {
                 Console.WriteLine("Type should either Commercial or Domestic");
                 customerType = Console.ReadLine();
