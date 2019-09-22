@@ -15,8 +15,9 @@ namespace Crud
         public string passw;
         public string useraddress;
         public string type;
-        public int count = 3;
+        public int count = 10;
         NewUser new1 = new NewUser();
+        Admin admin1 = new Admin();
         public void display1(List<User> Usernames)
         {
             do
@@ -60,7 +61,8 @@ namespace Crud
 
                         case 3:
                             Console.Clear();
-
+                            admin1.CheckPass(Usernames);
+                            Confirm = true;
                             break;
 
                         default:
