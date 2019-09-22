@@ -8,6 +8,9 @@ namespace Crud
 {
     class Login
     {
+        
+        Bill item = new Bill();
+  
         bool isValue = true;
         public static string uname { get; set; }
         public string password { get; set; }
@@ -34,6 +37,7 @@ namespace Crud
             }
 
             Validate(Usernames);
+            
         }
 
         public void Validate(List<User> Usernames)
@@ -54,7 +58,7 @@ namespace Crud
             if(isValue==true)
             {
                 Console.Clear();
-             
+                GetDetails(Usernames);
             }
             else
             {
@@ -63,7 +67,7 @@ namespace Crud
                 Form(Usernames);
 
             }
-            GetDetails(Usernames);
+            
         }
 
         public void GetDetails(List<User> Usernames)
@@ -73,9 +77,14 @@ namespace Crud
             {
                 if (uname == u.name && password == u.pass)
                 {
+                    Console.WriteLine();
+                    Console.WriteLine();
                     Console.WriteLine($"Customer ID : {u.customerID}");
                     Console.WriteLine($"Address : {u.address}");
                     Console.WriteLine($"Type : {u.customerType}");
+                    Console.WriteLine();
+                    item.BillIt(u);
+                    
                 }
             }
         }
