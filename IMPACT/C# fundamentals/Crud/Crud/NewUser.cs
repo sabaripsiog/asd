@@ -53,13 +53,21 @@ namespace Crud
             customerType = Console.ReadLine();
             while (string.IsNullOrEmpty(customerType))
             {
-                Console.WriteLine("Password can't be empty! Input your password once more");
+                Console.WriteLine("Type can't be empty! Input your service type once more");
                 customerType = Console.ReadLine();
             }
             while (customerType != "C" && customerType != "D" && customerType != "c" && customerType != "d")
             {
-                Console.WriteLine("Type should either Commercial or Domestic");
+                Console.WriteLine("Type should either Domestic or Commercial");
                 customerType = Console.ReadLine();
+            }
+            if (customerType == "C" || customerType == "c")
+            {
+                customerType = "Commercial";
+            }
+            else if (customerType == "D" || customerType == "d")
+            {
+                customerType = "Domestic";
             }
             return customerType;
         }
