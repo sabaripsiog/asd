@@ -19,8 +19,12 @@ namespace Crud
         public int prev1;
         public string current;
         public int current1;
+        
         public void CheckPass(List<User> Usernames)
         {
+            Console.WriteLine(" \t \t \t Welcome to TNEB Website!!");
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine("Enter the admin pass.");
             Allow = Console.ReadLine();
             while (string.IsNullOrEmpty(Allow))
@@ -46,6 +50,7 @@ namespace Crud
                 Console.WriteLine("1. Display consumer list ");
                 Console.WriteLine("2. Update consumer details ");
                 Console.WriteLine("3. Delete ");
+               
                 Console.WriteLine();
                 Console.WriteLine("Enter your option");
 
