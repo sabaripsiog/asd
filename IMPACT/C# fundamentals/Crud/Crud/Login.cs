@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Crud
 {
@@ -84,9 +88,33 @@ namespace Crud
                     Console.WriteLine($"Type : {u.customerType}");
                     Console.WriteLine();
                     item.BillIt(u);
-                    
+                    SaveAsJson(Usernames);
+                    //SaveAsXml(Usernames);
                 }
             }
         }
+
+        public void SaveAsJson(List<User> Usernames)
+        {
+            using (StreamWriter file = File.CreateText(@"Jsonfile.txt"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                //serialize object directly into file stream
+                serializer.Serialize(file, Usernames);
+            }
+        }
+        public void SaveAsXml(List<User> Usernames)
+        {
+            using (StreamWriter file = File.CreateText(@"Xmlfile.txt"))
+            {
+                foreach (User u in Usernames)
+                {
+                    XmlSerializer serialization = new XmlSerializer(typeof(User));
+                    //serialize object directly into file stream
+                    serialization.Serialize(file, u);
+                }
+            }
+        }
+
     }
 }
