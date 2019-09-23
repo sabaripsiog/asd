@@ -12,3 +12,6 @@ C:\Users\Sabarish\Desktop\asd\IMPACT\C# fundamentals\Crud\Crud\obj\Debug\Crud.cs
 C:\Users\Sabarish\Desktop\asd\IMPACT\C# fundamentals\Crud\Crud\obj\Debug\Crud.csproj.CoreCompileInputs.cache
 C:\Users\Sabarish\Desktop\asd\IMPACT\C# fundamentals\Crud\Crud\obj\Debug\Crud.exe
 C:\Users\Sabarish\Desktop\asd\IMPACT\C# fundamentals\Crud\Crud\obj\Debug\Crud.pdb
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C# fundamentals\Crud\Crud\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C# fundamentals\Crud\Crud\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C# fundamentals\Crud\Crud\obj\Debug\Crud.csproj.CopyComplete
