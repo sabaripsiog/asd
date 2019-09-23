@@ -17,7 +17,9 @@ namespace Crud
         public string type;
         public int count = 10;
         NewUser new1 = new NewUser();
-        Admin admin1 = new Admin();
+        Login log = new Login();
+
+        
         public void display1(List<User> Usernames)
         {
             do
@@ -27,7 +29,7 @@ namespace Crud
                 Console.WriteLine();
                 Console.WriteLine("1. Existing User ");
                 Console.WriteLine("2. New User ");
-                Console.WriteLine("3. Admin ");
+                
                 Console.WriteLine();
                 Console.WriteLine("Enter your option");
 
@@ -39,13 +41,14 @@ namespace Crud
                     Getoption = Console.ReadLine();
                 }
 
-                if ((userOption > 0) && (userOption < 4))
+                if ((userOption > 0) && (userOption < 3))
                 {
                     Confirm = false;
                     switch (userOption)
                     {
                         case 1:
                             Console.Clear();
+                            log.Form(Usernames);
                             break;
 
                         case 2:
@@ -54,16 +57,13 @@ namespace Crud
                             passw = new1.getPass();
                             useraddress = new1.getAddress();
                             type = new1.getType();
-                            Usernames.Add(new User() { name = uname, pass = passw , address = useraddress, customerType = type, customerID = count+1 , CurrentUnits = 0, PreviousUnits = 0});
+                            Usernames.Add(new User() { name = uname, pass = passw , address = useraddress, customerType = type, customerID = count+1 , CurrentUnits = 100, PreviousUnits = 0});
                             Console.Clear();
                             Console.WriteLine("Registered Successfully");
+                            display1(Usernames);
                             break;
 
-                        case 3:
-                            Console.Clear();
-                            admin1.CheckPass(Usernames);
-                            Confirm = true;
-                            break;
+                        
 
                         default:
                             Console.WriteLine("No match found");
@@ -78,6 +78,7 @@ namespace Crud
                 }
 
             } while (Confirm == true);
+            
         }
     }
 }
