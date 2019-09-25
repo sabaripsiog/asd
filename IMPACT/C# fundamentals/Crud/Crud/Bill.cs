@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +11,16 @@ namespace Crud
 {
     class Bill 
     {
-        
+        public int userOption;
+        public string Getoption;
+        public bool Confirm = false;
+        public Bill2 X;
         public int Units_this_month;
 
         public double Rupees_per_unit;
 
         public double Total;
+        public List<Bill2> BillList = new List<Bill2>();
         public void BillIt(User u)
         {
             
@@ -101,8 +107,84 @@ namespace Crud
             Console.WriteLine();
             Console.WriteLine();
             
-            Console.WriteLine("Press enter to exit");
+            BillList.Add(new Bill2() { unitPerMonth = Units_this_month, RupeesPerUnit = Rupees_per_unit, Total = Total });
+            foreach(Bill2 b in BillList)
+            {
+                X = b;
+            }
+            File.Delete(@"Billjson.json");
+            File.Delete(@"Billxml.xml");
+            do
+            {
+                Console.WriteLine(" Enter the format for your bill");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("1. XML ");
+                Console.WriteLine("2. Json ");
+
+                Console.WriteLine();
+                Console.WriteLine("Enter your option");
+
+                Getoption = Console.ReadLine();
+
+                while (!int.TryParse(Getoption, out userOption))
+                {
+                    Console.WriteLine("This is not a number!");
+                    Getoption = Console.ReadLine();
+                }
+
+                if ((userOption > 0) && (userOption < 3))
+                {
+                    Confirm = false;
+                    switch (userOption)
+                    {
+                        case 1:
+                            SaveAsXml(u, X);
+                            break;
+
+                        case 2:
+                            SaveAsJson(u, X);
+                            break;
+
+                        default:
+                            Console.WriteLine("No match found");
+                            break;
+                    }
+                }
+                else
+                {
+                    Confirm = true;
+                    Console.WriteLine("Re-enter the options");
+                }
+
+            } while (Confirm == true);
+            Console.WriteLine("Your Bill has been printed. Please press enter to exit");
             
+        }
+        public void SaveAsJson(User u, Bill2 X)
+        {
+            using (StreamWriter file = File.CreateText(@"Billjson.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                //serialize object directly into file stream
+                serializer.Serialize(file, u);
+                serializer.Serialize(file, X);
+            }
+            using (StreamReader r = new StreamReader(@"Billjson.json"))
+            {
+                string json = r.ReadToEnd();
+                JsonConvert.SerializeObject(json, Formatting.Indented);
+            }
+        }
+        public void SaveAsXml(User u, Bill2 X)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(User));
+            XmlSerializer xs1 = new XmlSerializer(typeof(Bill2));
+            TextWriter txtWriter = new StreamWriter(@"Billxml.xml");
+
+            xs.Serialize(txtWriter, u);
+            xs1.Serialize(txtWriter, X);
+            txtWriter.Close();
         }
     }
 }
