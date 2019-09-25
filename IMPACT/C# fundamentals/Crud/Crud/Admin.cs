@@ -107,7 +107,7 @@ namespace Crud
                 Console.WriteLine("This is not a number!");
                 Getoption = Console.ReadLine();
             }
-            if (userOption > 0 && userOption <= Usernames.Count)
+            if (userOption > 0 && userOption <= 15)
             {
                 Usernames.RemoveAll(idel => idel.customerID == userOption);
             }else
