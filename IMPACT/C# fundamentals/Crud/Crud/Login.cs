@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -88,21 +88,13 @@ namespace Crud
                     Console.WriteLine($"Type : {u.customerType}");
                     Console.WriteLine();
                     item.BillIt(u);
-                    SaveAsJson(Usernames);
+                    
                     //SaveAsXml(Usernames);
                 }
             }
         }
 
-        public void SaveAsJson(List<User> Usernames)
-        {
-            using (StreamWriter file = File.CreateText(@"Jsonfile.txt"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                //serialize object directly into file stream
-                serializer.Serialize(file, Usernames);
-            }
-        }
+        
         public void SaveAsXml(List<User> Usernames)
         {
             using (StreamWriter file = File.CreateText(@"Xmlfile.txt"))
