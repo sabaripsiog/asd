@@ -1,12 +1,12 @@
 ---------------------------TNEB------------------------------
 ---------------------------BILL------------------------------
-Date:23-09-2019					Time:07:45 PM
+Date:25-09-2019					Time:03:48 PM
 -------------------------------------------------------------------
-Consumer name:sab				Consumer ID:1
-Consumer Address:8 , Raja street , Anna nagar.
+Consumer name:joe				Consumer ID:7
+Consumer Address:36 , Usha street , Kodambakkam.
 -------------------------------------------------------------------
-Current consumption: 				 80
-Per unit charge: 				 1.5
+Current consumption: 				 573
+Per unit charge: 				 10.3
 -------------------------------------------------------------------
-Total charges: 					 120
+Total charges: 					 5901.9
 -------------------------------------------------------------------
