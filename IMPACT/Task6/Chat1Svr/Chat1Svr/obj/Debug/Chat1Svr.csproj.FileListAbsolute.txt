@@ -1,0 +1,14 @@
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.exe.config
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.exe
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.pdb
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.csprojAssemblyReference.cache
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.csproj.CoreCompileInputs.cache
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.exe
+C:\Users\Sabarish.a\source\repos\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.pdb
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.exe.config
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.exe
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\bin\Debug\Chat1Svr.pdb
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.csprojAssemblyReference.cache
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.csproj.CoreCompileInputs.cache
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.exe
+C:\Users\Sabarish.a\Desktop\extras\Chat1Svr\Chat1Svr\obj\Debug\Chat1Svr.pdb
