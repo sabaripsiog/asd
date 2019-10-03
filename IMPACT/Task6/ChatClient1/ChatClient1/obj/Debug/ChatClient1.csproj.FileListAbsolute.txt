@@ -5,3 +5,10 @@ C:\Users\Sabarish.a\Desktop\extras\ChatClient1\ChatClient1\obj\Debug\ChatClient1
 C:\Users\Sabarish.a\Desktop\extras\ChatClient1\ChatClient1\obj\Debug\ChatClient1.csproj.CoreCompileInputs.cache
 C:\Users\Sabarish.a\Desktop\extras\ChatClient1\ChatClient1\obj\Debug\ChatClient1.exe
 C:\Users\Sabarish.a\Desktop\extras\ChatClient1\ChatClient1\obj\Debug\ChatClient1.pdb
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\bin\Debug\ChatClient1.exe.config
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\bin\Debug\ChatClient1.exe
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\bin\Debug\ChatClient1.pdb
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\obj\Debug\ChatClient1.csprojAssemblyReference.cache
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\obj\Debug\ChatClient1.csproj.CoreCompileInputs.cache
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\obj\Debug\ChatClient1.exe
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ChatClient1\ChatClient1\obj\Debug\ChatClient1.pdb
