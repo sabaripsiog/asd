@@ -15,12 +15,9 @@ namespace Chat1Svr
         static readonly object _lock = new object();
         static readonly Dictionary<int, TcpClient> list_clients = new Dictionary<int, TcpClient>();
 
-
         static void Main(string[] args)
         {
-
             int count = 1;
-
 
             TcpListener ServerSocket = new TcpListener(IPAddress.Any, 5000);
             ServerSocket.Start();
@@ -32,7 +29,6 @@ namespace Chat1Svr
                 lock (_lock) list_clients.Add(count, client);
                 Console.WriteLine($"Client {count} connected!!");
 
-
                 Thread t = new Thread(handle_clients);
                 t.Start(count);
 
@@ -40,8 +36,6 @@ namespace Chat1Svr
                 count++;
             }
         }
-
-
         public static void handle_clients(object o)
         {
             int id = (int)o;
@@ -55,11 +49,12 @@ namespace Chat1Svr
             {
                 try
                 {
-                    lock (_lock)
-                    {
-                        byte[] clientData = new byte[1024*3000];
+                      
+                        
+                        byte[] clientData = new byte[1024*5000];
 
                         int receivedBytesLen = client.Client.Receive(clientData);
+                        Console.WriteLine(receivedBytesLen);
                         if (receivedBytesLen == 0)
                         {
                             break;
@@ -68,12 +63,11 @@ namespace Chat1Svr
                         {
                             c.Client.Send(clientData);
                         }
-                    }
+                    
 
                 }
                 catch (Exception ex)
                 {
-
                     Console.WriteLine("File Sending fail." + ex.Message);
                 }
             }
