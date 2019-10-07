@@ -9,3 +9,9 @@ C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ConsoleApplication2\Con
 C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\server.csproj.CoreCompileInputs.cache
 C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.exe
 C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.pdb
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\server.csprojAssemblyReference.cache
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\server.csproj.CoreCompileInputs.cache
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.exe
+C:\Users\Sabarish\Desktop\asd\IMPACT\Task6\ConsoleApplication2\ConsoleApplication2\obj\x86\Debug\ConsoleApplication2.pdb
