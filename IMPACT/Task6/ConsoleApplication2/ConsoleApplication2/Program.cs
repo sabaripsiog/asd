@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Threading;
+using System.Net;
 public class AsynchIOServer
 {
-    static TcpListener tcpListener = new TcpListener(10);
+    static TcpListener tcpListener = new TcpListener(IPAddress.Any,10);
 
     
 
