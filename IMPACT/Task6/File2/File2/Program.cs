@@ -28,7 +28,10 @@ namespace Lastsampleserver
             TcpListener ServerSocket = new TcpListener(IPAddress.Any, 5000);
             ServerSocket.Start();
             Console.WriteLine("Welcome to Chat room!!");
-            while (true)
+            Console.WriteLine("How many clients are going to connect to this server?:");
+            int numberOfClients = int.Parse(Console.ReadLine());
+            
+            for(count = 1; count <=numberOfClients; count++)
             {
                 TcpClient client = ServerSocket.AcceptTcpClient();
 
@@ -36,18 +39,18 @@ namespace Lastsampleserver
                 int name_byte_count = client.Client.Receive(namebuffer);
                 string client_name = Encoding.ASCII.GetString(namebuffer, 0, name_byte_count);
                 lock (_lock) list_clients.Add(client_name, client);
-                display_clients(list_clients);
+                
                 Console.WriteLine($"Client {client_name} connected!!");
               
                 Thread t = new Thread(handle_clients);
                 t.Start(client_name);
-                Console.WriteLine($"Number of clients connected {count}");
-                count++;
                
+                Console.WriteLine($"Number of clients connected {count}");
             }
+           
         }
 
-        public static void display_clients(Dictionary<string, TcpClient> list_clients)
+        public static void display_clients()
         {
             foreach (TcpClient c in list_clients.Values)
             {
@@ -66,6 +69,7 @@ namespace Lastsampleserver
 
         public static void handle_clients(object o)
         {
+             display_clients();
             string id = (string)o;
             TcpClient client;
             lock (_lock) client = list_clients[id];
