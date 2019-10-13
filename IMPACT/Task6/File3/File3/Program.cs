@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -18,13 +18,15 @@ namespace Lastsampleclient
         {
             IPAddress ip = IPAddress.Parse("192.168.153.57");
             int port = 5000;
+
             TcpClient client = new TcpClient();
             client.Connect(ip, port);
-            Console.WriteLine("client connected!!");
+            
             NetworkStream ns = client.GetStream();
             Thread thread = new Thread(o => ReceiveData((TcpClient)o));
             //Thread thread1 = new Thread(o => fileReceiveData((TcpClient)o));
             thread.Start(client);
+            Console.WriteLine("client connected!!");
             //thread1.Start(client);
             string s;
             string name;
