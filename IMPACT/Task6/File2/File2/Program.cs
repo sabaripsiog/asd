@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -69,7 +70,7 @@ namespace Lastsampleserver
 
         public static void handle_clients(object o)
         {
-             display_clients();
+            // display_clients();
             string id = (string)o;
             TcpClient client;
             lock (_lock) client = list_clients[id];
@@ -102,18 +103,21 @@ namespace Lastsampleserver
                         }
 
                         bool isvalue = false;
-
-
+                        string myKey;
+                        myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
                         string data = Encoding.ASCII.GetString(buffernew, 0, byte_count_new);
 
+                        
                         
                             foreach (KeyValuePair<string, TcpClient> entry in list_clients)
                             {
 
                                 if (data.Contains(entry.Key + "/"))
                                 {
+                                    string[] split_data = data.Split('/');
                                     isvalue = true;
-                                    byte[] buffer1 = Encoding.ASCII.GetBytes(data + Environment.NewLine);
+                                    string newstring = myKey + ":" + split_data[1];
+                                    byte[] buffer1 = Encoding.ASCII.GetBytes(newstring + Environment.NewLine);
 
                                     string edata = "message";
                                     byte[] messageByte = Encoding.ASCII.GetBytes(edata);
@@ -131,30 +135,42 @@ namespace Lastsampleserver
 
                         if (isvalue == true)
                         {
+                            
+                            Console.WriteLine($"{myKey} sent a private message.");
                             continue;
                         }
                         else
                         {
+                            
                             broadcast(data);
-
+                            myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
+                            Console.WriteLine($"{myKey} sent a message.");
                         }
 
-                        
 
-                        Console.WriteLine(data);
+                        
                         Array.Clear(buffernew, 0, buffernew.Length);
                         stream.Flush();
                     }
 
 
 
-                    else if (messagedata == "file")
+                    else if (messagedata == "file" || messagedata == "voice")
                     {
+                        string myKey;
+                        myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
                         Array.Clear(buffer, 0, buffer.Length);
-                        Console.WriteLine("It is a file........");
+                        if (messagedata == "file")
+                        {
+                            Console.WriteLine($"{myKey} sent a file.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{myKey} sent a voice note.");
+                        }
                         byte[] clientData = new byte[1024 * 5000];
                         int receivedBytesLen = client.Client.Receive(clientData);
-                        Console.WriteLine(receivedBytesLen);
+                       
                         if (receivedBytesLen == 0)
                         {
                             break;
@@ -181,7 +197,88 @@ namespace Lastsampleserver
 
                     }
 
+                    else if (messagedata == "privatefile" || messagedata =="privatevoice")
+                    {
+                        string myKey;
+                        myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
+                        if (messagedata == "privatefile")
+                        {
+                            Console.WriteLine($"{myKey} sent a file privately.");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{myKey} sent a private voice note.");
+                        }
+                        Array.Clear(buffer, 0, buffer.Length);
 
+                        byte[] splitbuffer = new byte[1024 * 5000];
+                        int Len = client.Client.Receive(splitbuffer);
+                        string client_name = Encoding.ASCII.GetString(splitbuffer, 0, Len);
+                       
+
+
+                       
+
+
+                        foreach (KeyValuePair<string, TcpClient> entry in list_clients)
+                        {
+
+                            if (entry.Key == client_name)
+                            {
+
+                                byte[] clientData = new byte[1024 * 5000];
+                                int receivedBytesLen = client.Client.Receive(clientData);
+
+                                if (receivedBytesLen == 0)
+                                {
+                                    break;
+                                }
+                                //stream.Write(clientData, 0, clientData.Length);
+                                messagedata = "file";
+                                byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
+                                byte[] messageBuffer = new byte[messageByte.Length];
+                                messageByte.CopyTo(messageBuffer, 0);
+                                entry.Value.Client.Send(messageBuffer);
+                                Array.Clear(messageBuffer, 0, messageBuffer.Length);
+                                entry.Value.Client.Send(clientData);
+                            }
+
+                        }
+                        
+
+
+                    }
+                    /*
+                    else if(messagedata == "all")
+                    {
+                     
+                        foreach (KeyValuePair<string, TcpClient> entry in list_clients)
+                        {
+
+                            if (entry.Value == client)
+                            {
+                               
+                                byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
+                                byte[] messageBuffer = new byte[messageByte.Length];
+                                messageByte.CopyTo(messageBuffer, 0);
+                                client.Client.Send(messageBuffer);
+                                NetworkStream stream = client.GetStream();
+                                foreach (string name in list_clients.Keys)
+                                {
+                                    byte[] displayByte = Encoding.ASCII.GetBytes(name);
+                                    byte[] displayBuffer = new byte[displayByte.Length];
+                                    displayByte.CopyTo(displayBuffer, 0);
+                                    stream.Write(displayBuffer, 0, displayBuffer.Length);
+                                    Array.Clear(displayBuffer, 0, displayBuffer.Length);
+                                }
+
+                            }
+
+                        }
+                        
+                    }
+
+    */
 
                 }
             }
