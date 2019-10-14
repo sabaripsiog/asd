@@ -56,7 +56,7 @@ namespace Lastsampleserver
             {
                 
                 NetworkStream stream = c.GetStream();
-                foreach(string name in list_clients.Keys)
+                foreach (string name in list_clients.Keys)
                 {
                     byte[] displayByte = Encoding.ASCII.GetBytes(name);
                     byte[] displayBuffer = new byte[displayByte.Length];
@@ -101,10 +101,46 @@ namespace Lastsampleserver
                             break;
                         }
 
+                        bool isvalue = false;
 
 
                         string data = Encoding.ASCII.GetString(buffernew, 0, byte_count_new);
-                        broadcast(data);
+
+                        
+                            foreach (KeyValuePair<string, TcpClient> entry in list_clients)
+                            {
+
+                                if (data.Contains(entry.Key + "/"))
+                                {
+                                    isvalue = true;
+                                    byte[] buffer1 = Encoding.ASCII.GetBytes(data + Environment.NewLine);
+
+                                    string edata = "message";
+                                    byte[] messageByte = Encoding.ASCII.GetBytes(edata);
+                                    byte[] messageBuffer = new byte[messageByte.Length];
+                                    messageByte.CopyTo(messageBuffer, 0);
+                                    entry.Value.Client.Send(messageBuffer);
+                                    Array.Clear(messageBuffer, 0, messageBuffer.Length);
+                                    NetworkStream stream1 = entry.Value.GetStream();
+                                    stream1.Write(buffer1, 0, buffer1.Length);
+                                    stream1.Flush();
+                                    
+                                }
+                       
+                            }
+
+                        if (isvalue == true)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            broadcast(data);
+
+                        }
+
+                        
+
                         Console.WriteLine(data);
                         Array.Clear(buffernew, 0, buffernew.Length);
                         stream.Flush();
@@ -162,6 +198,7 @@ namespace Lastsampleserver
         }
 
 
+    
 
         public static void broadcast(string data)
         {
