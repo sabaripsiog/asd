@@ -1,0 +1,7 @@
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\bin\Debug\File2.exe.config
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\bin\Debug\File2.exe
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\bin\Debug\File2.pdb
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\obj\Debug\File2.exe
+C:\Users\Sabarish.a\Documents\GitHub\assign\IMPACT\C#ConsoleChatApp\Server\File2\obj\Debug\File2.pdb
