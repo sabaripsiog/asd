@@ -173,16 +173,16 @@ namespace Lastsampleserver
 
                     }
 
-                    else if (messagedata == "privatefile" || messagedata == "privatevoice")
+                    else if (messagedata.Contains("privatefile") || messagedata.Contains("privatevoice"))
                     {
                         Array.Clear(buffer, 0, buffer.Length);
 
                         string myKey;
                         myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
 
-                        byte[] splitbuffer = new byte[1024];
-                        int Len = client.Client.Receive(splitbuffer);
-                        string client_name = Encoding.ASCII.GetString(splitbuffer, 0, Len);
+                        string[] split_content = messagedata.Split('/');
+
+                        string client_name = split_content[1];
                         
 
                         foreach (KeyValuePair<string, TcpClient> entry in list_clients)
@@ -190,7 +190,7 @@ namespace Lastsampleserver
 
                             if (client_name == entry.Key)
                             {
-                                if (messagedata == "privatefile")
+                                if (messagedata.Contains("privatefile"))
                                 {
                                     Console.WriteLine($"{myKey} sent a file privately to {entry.Key}.");
                                 }
@@ -254,7 +254,7 @@ namespace Lastsampleserver
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("failed in type of file"+e.Message);
             }
 
 
