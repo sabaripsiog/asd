@@ -105,23 +105,14 @@ namespace Lastsampleclient
                 {
                     if (s.Contains("/"))
                     {
+                        string[] split_file = s.Split('/');
                         string filePath = @"C:/Users/Sabarish.a/Desktop/";
-                        string message = "privatefile";
+                        string message = "privatefile" + "/" + split_file[0];
                         byte[] messageByte = Encoding.ASCII.GetBytes(message);
                         byte[] messageBuffer = new byte[messageByte.Length];
                         messageByte.CopyTo(messageBuffer, 0);
                         client.Client.Send(messageBuffer);
                         Array.Clear(messageBuffer, 0, messageBuffer.Length);
-
-
-                        string[] split_file = s.Split('/');
-
-                        byte[] splitfileByte = Encoding.ASCII.GetBytes(split_file[0]);
-                        byte[] splitBuffer = new byte[splitfileByte.Length];
-                        splitfileByte.CopyTo(splitBuffer, 0);
-                        client.Client.Send(splitBuffer);
-                        Array.Clear(splitBuffer, 0, splitBuffer.Length);
-
 
                         byte[] fileNameByte = Encoding.ASCII.GetBytes(split_file[1]);
                         byte[] fileData = File.ReadAllBytes(filePath + split_file[1]);
@@ -206,22 +197,14 @@ namespace Lastsampleclient
                     //string sender;
                     if (s.Contains("/"))
                     {
+                        string[] split_file = s.Split('/');
                         string filePath = @"C:/Users/Sabarish.a/Desktop/";
-                        string message = "privatevoice";
+                        string message = "privatevoice" + "/" + split_file[0];
                         byte[] messageByte = Encoding.ASCII.GetBytes(message);
                         byte[] messageBuffer = new byte[messageByte.Length];
                         messageByte.CopyTo(messageBuffer, 0);
                         client.Client.Send(messageBuffer);
                         Array.Clear(messageBuffer, 0, messageBuffer.Length);
-
-
-                        string[] split_file = s.Split('/');
-
-                        byte[] splitfileByte = Encoding.ASCII.GetBytes(split_file[0]);
-                        byte[] splitBuffer = new byte[splitfileByte.Length];
-                        splitfileByte.CopyTo(splitBuffer, 0);
-                        client.Client.Send(splitBuffer);
-                        Array.Clear(splitBuffer, 0, splitBuffer.Length);
 
 
                         byte[] fileNameByte = Encoding.ASCII.GetBytes("result.wav");
