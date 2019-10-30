@@ -5,7 +5,7 @@ function dis()
     if(document.getElementById("pnum").value == "" || document.getElementById("pnum").value <=0)
     {
         alert("Records per page should be a positive value");
-    } else if(document.getElementById("pnum").value > Object.keys(database).length)
+    } else if(document.getElementById("pnum").value > Object.keys(database).length+20)
     {
         alert("Enter a smaller value");
     } else {
