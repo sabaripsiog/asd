@@ -1,12 +1,12 @@
 ---------------------------TNEB------------------------------
 ---------------------------BILL------------------------------
-Date:25-09-2019					Time:03:48 PM
+Date:30-10-2019					Time:02:57 PM
 -------------------------------------------------------------------
-Consumer name:joe				Consumer ID:7
-Consumer Address:36 , Usha street , Kodambakkam.
+Consumer name:adsd				Consumer ID:11
+Consumer Address:sdafasdfs
 -------------------------------------------------------------------
-Current consumption: 				 573
+Current consumption: 				 13120810
 Per unit charge: 				 10.3
 -------------------------------------------------------------------
-Total charges: 					 5901.9
+Total charges: 					 135144343
 -------------------------------------------------------------------
