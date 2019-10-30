@@ -8,11 +8,11 @@ namespace Crud
 {
     public class User
     {
-        public string name { get; set; }
-        public string pass { get; set; } 
-        public int customerID { get; set; }
-        public string address { get; set; }
-        public string customerType { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; } 
+        public int CustomerId { get; set; }
+        public string Address { get; set; }
+        public string CustomerType { get; set; }
         public int PreviousUnits { get; set; }
         public int CurrentUnits { get; set; }
 
