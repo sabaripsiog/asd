@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <name>joe</name>
-  <pass>pass7</pass>
-  <customerID>7</customerID>
-  <address>36 , Usha street , Kodambakkam.</address>
-  <customerType>Commercial</customerType>
-  <PreviousUnits>3333</PreviousUnits>
-  <CurrentUnits>3906</CurrentUnits>
+  <Name>adsd</Name>
+  <Password>sdfasdf</Password>
+  <CustomerId>11</CustomerId>
+  <Address>sdafasdfs</Address>
+  <CustomerType>Commercial</CustomerType>
+  <PreviousUnits>2313</PreviousUnits>
+  <CurrentUnits>13123123</CurrentUnits>
 </User><?xml version="1.0" encoding="utf-8"?>
-<Bill2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <unitPerMonth>573</unitPerMonth>
+<BillAddOn xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UnitPerMonth>13120810</UnitPerMonth>
   <RupeesPerUnit>10.3</RupeesPerUnit>
-  <Total>5901.9000000000005</Total>
-</Bill2>
+  <Total>135144343</Total>
+</BillAddOn>
