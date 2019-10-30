@@ -8,68 +8,74 @@ namespace Crud
 {
     class NewUser
     {
-        public string username;
-        public string pass;
-        public string address;
-        public string customerType;
-        
-        
-        public string getName()
+        public string Username;
+        public string Password;
+        public string Address;
+        public string CustomerType;
+        public int CustomerId;
+
+        public int GetCustomerID(List<User> Usernames)
+        {
+            CustomerId = Usernames[Usernames.Count - 1].CustomerId;
+            CustomerId++;
+            return CustomerId;
+        }
+        public string GetName()
         {
             Console.WriteLine("Enter New User name:");
-            username = Console.ReadLine();
-            while (string.IsNullOrEmpty(username))
+            Username = Console.ReadLine();
+            while (string.IsNullOrEmpty(Username))
             {
                 Console.WriteLine("Name can't be empty! Input your Username once more");
-                username = Console.ReadLine();
+                Username = Console.ReadLine();
             }
-            return username;
+            return Username;
         }
-        public string getPass()
+        public string GetPass()
         {
-            Console.WriteLine("Enter New Password:");
-            pass = Console.ReadLine();
-            while (string.IsNullOrEmpty(pass))
+            Console.WriteLine("Set Password:");
+            Password = Console.ReadLine();
+            while (string.IsNullOrEmpty(Password))
             {
                 Console.WriteLine("Password can't be empty! Input your password once more");
-                pass = Console.ReadLine();
+                Password = Console.ReadLine();
             }
-            return pass;
+            return Password;
         }
-        public string getAddress()
+        public string GetAddress()
         {
-            Console.WriteLine("Enter your address:");
-            address = Console.ReadLine();
-            while (string.IsNullOrEmpty(address))
+            Console.WriteLine("Enter the address:");
+            Address = Console.ReadLine();
+            while (string.IsNullOrEmpty(Address))
             {
                 Console.WriteLine("Address can't be empty! Input your address once more");
-                address = Console.ReadLine();
+                Address = Console.ReadLine();
             }
-            return address;
+            return Address;
         }
-        public string getType()
+        public string GetCustomerType()
         {
             Console.WriteLine("Enter Electricity type(Domestic(D) or Commercial(C):");
-            customerType = Console.ReadLine();
-            while (string.IsNullOrEmpty(customerType))
+            CustomerType = Console.ReadLine();
+            while (string.IsNullOrEmpty(CustomerType))
             {
                 Console.WriteLine("Type can't be empty! Input your service type once more");
-                customerType = Console.ReadLine();
+                CustomerType = Console.ReadLine();
             }
-            while (customerType != "C" && customerType != "D" && customerType != "c" && customerType != "d")
+            while (CustomerType != "C" && CustomerType != "D" && CustomerType != "c" && CustomerType != "d")
             {
                 Console.WriteLine("Type should either Domestic or Commercial");
-                customerType = Console.ReadLine();
+                CustomerType = Console.ReadLine();
             }
-            if (customerType == "C" || customerType == "c")
+            if (CustomerType == "C" || CustomerType == "c")
             {
-                customerType = "Commercial";
+                CustomerType = "Commercial";
             }
-            else if (customerType == "D" || customerType == "d")
+            else if (CustomerType == "D" || CustomerType == "d")
             {
-                customerType = "Domestic";
+                CustomerType = "Domestic";
             }
-            return customerType;
+            return CustomerType;
         }
     }
 }
