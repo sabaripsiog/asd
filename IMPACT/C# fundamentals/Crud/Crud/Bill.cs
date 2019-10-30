@@ -11,77 +11,94 @@ namespace Crud
 {
     class Bill 
     {
-        public int userOption;
-        public string Getoption;
+        public int UserOption;
+        public string GetOption;
         public bool Confirm = false;
-        public Bill2 X;
-        public int Units_this_month;
-
-        public double Rupees_per_unit;
+        public BillAddOn BillDetails;
+        public int UnitsThisMonth;
+        
+        public double RupeesPerUnit;
 
         public double Total;
-        public List<Bill2> BillList = new List<Bill2>();
-        public void BillIt(User u)
+        public List<BillAddOn> BillList = new List<BillAddOn>();
+        public void BillIt(List<User> Usernames)
         {
             
-            Console.WriteLine();
-            Console.WriteLine("Press Enter to proceed to bill.");
-            Console.ReadLine();
-            Console.Clear();
+            Console.WriteLine("Enter the ID of the customer to print bill");
+            GetOption = Console.ReadLine();
 
+            while (!int.TryParse(GetOption, out UserOption))
+            {
+                Console.WriteLine("This is not a number!");
+                GetOption = Console.ReadLine();
+            }
+
+            if ((UserOption > 0) && (UserOption <= Usernames.Count))
+            {
+                foreach (User user in Usernames)
+                {
+                    if (user.CustomerId == UserOption)
+                    {
+                        PrintDetails(user);
+                    }
+                }
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Customer not found");
+            }
             
-            PrintDetails(u);
-           
         }
         public void PrintDetails(User u)
         {
-            Units_this_month = u.CurrentUnits - u.PreviousUnits;
-            if (u.customerType == "Domestic")
+            UnitsThisMonth = u.CurrentUnits - u.PreviousUnits;
+            if (u.CustomerType == "Domestic")
             {
-                if (Units_this_month <= 100)
+                if (UnitsThisMonth <= 100)
                 {
-                    Rupees_per_unit = 1.5;
+                    RupeesPerUnit = 1.5;
                 }
-                else if (Units_this_month > 100 && Units_this_month <= 300)
+                else if (UnitsThisMonth > 100 && UnitsThisMonth <= 300)
                 {
-                    Rupees_per_unit = 3.5;
+                    RupeesPerUnit = 3.5;
                 }
-                else if (Units_this_month > 300)
+                else if (UnitsThisMonth > 300)
                 {
-                    Rupees_per_unit = 6;
+                    RupeesPerUnit = 6;
                 }
             }
-            else if (u.customerType == "Commercial")
+            else if (u.CustomerType == "Commercial")
             {
-                if (Units_this_month <= 200)
+                if (UnitsThisMonth <= 200)
                 {
-                    Rupees_per_unit = 2;
+                    RupeesPerUnit = 2;
                 }
-                else if (Units_this_month > 200 && Units_this_month <= 500)
+                else if (UnitsThisMonth > 200 && UnitsThisMonth <= 500)
                 {
-                    Rupees_per_unit = 5.5;
+                    RupeesPerUnit = 5.5;
                 }
-                else if (Units_this_month > 500)
+                else if (UnitsThisMonth > 500)
                 {
-                    Rupees_per_unit = 10.3;
+                    RupeesPerUnit = 10.3;
                 }
             }
-            Total = Rupees_per_unit * Units_this_month;
+            Total = RupeesPerUnit * UnitsThisMonth;
 
 
-
+            Console.Clear();
 
             Console.WriteLine("---------------------------TNEB------------------------------");
             Console.WriteLine("---------------------------BILL------------------------------");
             Console.WriteLine("Date:" + DateTime.Now.ToString("dd/MM/yyyy") + "\t\t\t\t\t" + "Time:" + DateTime.Now.ToString("hh:mm tt"));
             Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine($"Consumer name:{u.name}\t\t\t\tConsumer ID:{u.customerID}");
-            Console.WriteLine($"Consumer Address:{u.address}");
+            Console.WriteLine($"Consumer name:{u.Name}\t\t\t\tConsumer ID:{u.CustomerId}");
+            Console.WriteLine($"Consumer Address:{u.Address}");
 
 
             Console.WriteLine("-------------------------------------------------------------------");
-            Console.WriteLine($"Current consumption: \t\t\t\t {Units_this_month}");
-            Console.WriteLine($"Per unit charge: \t\t\t\t {Rupees_per_unit}");
+            Console.WriteLine($"Current consumption: \t\t\t\t {UnitsThisMonth}");
+            Console.WriteLine($"Per unit charge: \t\t\t\t {RupeesPerUnit}");
             Console.WriteLine("-------------------------------------------------------------------");
             Console.WriteLine($"Total charges: \t\t\t\t\t {Total}");
             Console.WriteLine("-------------------------------------------------------------------");
@@ -93,13 +110,13 @@ namespace Crud
             billfile.WriteLine("---------------------------BILL------------------------------");
             billfile.WriteLine("Date:" + DateTime.Now.ToString("dd/MM/yyyy") + "\t\t\t\t\t" + "Time:" + DateTime.Now.ToString("hh:mm tt"));
             billfile.WriteLine("-------------------------------------------------------------------");
-            billfile.WriteLine($"Consumer name:{u.name}\t\t\t\tConsumer ID:{u.customerID}");
-            billfile.WriteLine($"Consumer Address:{u.address}");
+            billfile.WriteLine($"Consumer name:{u.Name}\t\t\t\tConsumer ID:{u.CustomerId}");
+            billfile.WriteLine($"Consumer Address:{u.Address}");
             
 
             billfile.WriteLine("-------------------------------------------------------------------");
-            billfile.WriteLine($"Current consumption: \t\t\t\t {Units_this_month}");
-            billfile.WriteLine($"Per unit charge: \t\t\t\t {Rupees_per_unit}");
+            billfile.WriteLine($"Current consumption: \t\t\t\t {UnitsThisMonth}");
+            billfile.WriteLine($"Per unit charge: \t\t\t\t {RupeesPerUnit}");
             billfile.WriteLine("-------------------------------------------------------------------");
             billfile.WriteLine($"Total charges: \t\t\t\t\t {Total}");
             billfile.WriteLine("-------------------------------------------------------------------");
@@ -107,10 +124,10 @@ namespace Crud
             Console.WriteLine();
             Console.WriteLine();
             
-            BillList.Add(new Bill2() { unitPerMonth = Units_this_month, RupeesPerUnit = Rupees_per_unit, Total = Total });
-            foreach(Bill2 b in BillList)
+            BillList.Add(new BillAddOn() { UnitPerMonth = UnitsThisMonth, RupeesPerUnit = RupeesPerUnit, Total = Total });
+            foreach(BillAddOn AddOn in BillList)
             {
-                X = b;
+                BillDetails = AddOn;
             }
             File.Delete(@"Billjson.json");
             File.Delete(@"Billxml.xml");
@@ -125,25 +142,25 @@ namespace Crud
                 Console.WriteLine();
                 Console.WriteLine("Enter your option");
 
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
 
-                while (!int.TryParse(Getoption, out userOption))
+                while (!int.TryParse(GetOption, out UserOption))
                 {
                     Console.WriteLine("This is not a number!");
-                    Getoption = Console.ReadLine();
+                    GetOption = Console.ReadLine();
                 }
 
-                if ((userOption > 0) && (userOption < 3))
+                if ((UserOption > 0) && (UserOption < 3))
                 {
                     Confirm = false;
-                    switch (userOption)
+                    switch (UserOption)
                     {
                         case 1:
-                            SaveAsXml(u, X);
+                            SaveAsXml(u, BillDetails);
                             break;
 
                         case 2:
-                            SaveAsJson(u, X);
+                            SaveAsJson(u, BillDetails);
                             break;
 
                         default:
@@ -158,17 +175,18 @@ namespace Crud
                 }
 
             } while (Confirm == true);
-            Console.WriteLine("Your Bill has been printed. Please press enter to exit");
-            
+            Console.WriteLine("Your Bill has been printed. Please press enter to continue");
+            Console.ReadLine();
+            Console.Clear();
         }
-        public void SaveAsJson(User u, Bill2 X)
+        public void SaveAsJson(User user, BillAddOn AddOn)
         {
             using (StreamWriter file = File.CreateText(@"Billjson.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 //serialize object directly into file stream
-                serializer.Serialize(file, u);
-                serializer.Serialize(file, X);
+                serializer.Serialize(file, user);
+                serializer.Serialize(file, AddOn);
             }
             using (StreamReader r = new StreamReader(@"Billjson.json"))
             {
@@ -176,14 +194,14 @@ namespace Crud
                 JsonConvert.SerializeObject(json, Formatting.Indented);
             }
         }
-        public void SaveAsXml(User u, Bill2 X)
+        public void SaveAsXml(User user, BillAddOn AddOn)
         {
             XmlSerializer xs = new XmlSerializer(typeof(User));
-            XmlSerializer xs1 = new XmlSerializer(typeof(Bill2));
+            XmlSerializer xs1 = new XmlSerializer(typeof(BillAddOn));
             TextWriter txtWriter = new StreamWriter(@"Billxml.xml");
 
-            xs.Serialize(txtWriter, u);
-            xs1.Serialize(txtWriter, X);
+            xs.Serialize(txtWriter, user);
+            xs1.Serialize(txtWriter, AddOn);
             txtWriter.Close();
         }
     }
