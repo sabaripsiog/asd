@@ -8,35 +8,31 @@ namespace Crud
 {
     class Admin
     {
-        public string AdminPass = "admin";
-        public string Allow;
-        public int userOption;
-        public string Getoption;
+        public int UserOption;
+        public string GetOption;
         public bool Confirm = false;
-        public bool idNo = true;
-        NewUser new2 = new NewUser();
-        public string prev;
-        public int prev1;
-        public string current;
-        public int current1;
+        public bool IdNo = true;
+        NewUser New2 = new NewUser();
+        public string Prev;
+        public int Prev1;
+        public string Current;
+        public int Current1;
+        public string Username;
+        public string Password;
+        public string UserAddress;
+        public string Type;
+        public int ID;
+        NewUser new1 = new NewUser();
         
+        Bill item = new Bill();
         public void CheckPass(List<User> Usernames)
         {
             Console.WriteLine(" \t \t \t Welcome to TNEB Website!!");
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("Enter the admin pass.");
-            Allow = Console.ReadLine();
-            while (string.IsNullOrEmpty(Allow))
-            {
-                Console.WriteLine("Password can't be empty! Input password once more");
-                Allow = Console.ReadLine(); 
-            }
-            while (Allow != AdminPass)
-            {
-                Console.WriteLine("Invalid password! Retry.");
-                Allow = Console.ReadLine();
-            }
+            Console.WriteLine("Welcome admin");
+            Console.WriteLine();
+
             AdminOperation(Usernames);
         }
 
@@ -48,38 +44,72 @@ namespace Crud
                 Console.WriteLine();
                 
                 Console.WriteLine("1. Display consumer list ");
-                Console.WriteLine("2. Update consumer details ");
-                Console.WriteLine("3. Delete ");
-               
+                Console.WriteLine("2. Register a new user ");
+                Console.WriteLine("3. Update consumer details ");
+                Console.WriteLine("4. Print consumer bill ");
+                Console.WriteLine("5. Delete an entry ");
+                Console.WriteLine("6. Exit ");
                 Console.WriteLine();
                 Console.WriteLine("Enter your option");
 
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
 
-                while (!int.TryParse(Getoption, out userOption))
+                while (!int.TryParse(GetOption, out UserOption))
                 {
                     Console.WriteLine("This is not a number!");
-                    Getoption = Console.ReadLine();
+                    GetOption = Console.ReadLine();
                 }
 
-                if ((userOption > 0) && (userOption < 4))
+                if ((UserOption > 0) && (UserOption < 7))
                 {
                     Confirm = false;
-                    switch (userOption)
+                    switch (UserOption)
                     {
                         case 1:
                             Console.Clear();
                             ListDisplay(Usernames);
+                            AdminOperation(Usernames);
                             break;
 
                         case 2:
                             Console.Clear();
-                            UpdateList(Usernames);
+                            Username = new1.GetName();
+                            Password = new1.GetPass();
+                            UserAddress = new1.GetAddress();
+                            Type = new1.GetCustomerType();
+                            ID = new1.GetCustomerID(Usernames);
+                            Usernames.Add(new User() { Name = Username, Password = Password, Address = UserAddress, CustomerType = Type, CustomerId = ID, CurrentUnits = 100, PreviousUnits = 0 });
+                            Console.Clear();
+                            Console.WriteLine("Registered Successfully");
+                            ListDisplay(Usernames);
+                            AdminOperation(Usernames);
                             break;
 
                         case 3:
                             Console.Clear();
+                            UpdateList(Usernames);
+                           
+                            AdminOperation(Usernames);
+                            break;
+
+                        case 4:
+                            Console.Clear();
+                            ListDisplay(Usernames);
+                            item.BillIt(Usernames);
+                            
+                            AdminOperation(Usernames);
+                            
+                            break;
+
+                        case 5:
+                            Console.Clear();
                             DeleteOption(Usernames);
+                            
+                            AdminOperation(Usernames);
+                            break;
+
+                        case 6:
+                            Console.WriteLine("Press any key to exit");
                             break;
 
                         default:
@@ -99,22 +129,27 @@ namespace Crud
 
         public void DeleteOption(List<User> Usernames)
         {
+            ListDisplay(Usernames);
             Console.WriteLine("Enter the ID of the customer to be deleted");
-            Getoption = Console.ReadLine();
+            GetOption = Console.ReadLine();
 
-            while (!int.TryParse(Getoption, out userOption))
+            while (!int.TryParse(GetOption, out UserOption))
             {
                 Console.WriteLine("This is not a number!");
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
             }
-            if (userOption > 0 && userOption <= 15)
+            if (UserOption > 0 && UserOption <= Usernames.Count)
             {
-                Usernames.RemoveAll(idel => idel.customerID == userOption);
-            }else
+                Usernames.RemoveAll(idel => idel.CustomerId == UserOption);
+
+                ListDisplay(Usernames);
+            }
+            else
             {
+                Console.Clear();
                 Console.WriteLine("Customer not found");
             }
-            AdminOperation(Usernames);
+            
         }
 
         public void UpdateList(List<User> Usernames)
@@ -130,18 +165,18 @@ namespace Crud
                 Console.WriteLine();
                 Console.WriteLine("Enter your option");
 
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
 
-                while (!int.TryParse(Getoption, out userOption))
+                while (!int.TryParse(GetOption, out UserOption))
                 {
                     Console.WriteLine("This is not a number!");
-                    Getoption = Console.ReadLine();
+                    GetOption = Console.ReadLine();
                 }
 
-                if ((userOption > 0) && (userOption < 3))
+                if ((UserOption > 0) && (UserOption < 3))
                 {
                     Confirm = false;
-                    switch (userOption)
+                    switch (UserOption)
                     {
                         case 1:
                             Console.Clear();
@@ -170,77 +205,82 @@ namespace Crud
 
         public void UpdateUnits(List<User> Usernames)
         {
+            ListDisplay(Usernames);
             Console.WriteLine("Enter the customer ID for which units has to be updated");
-            Getoption = Console.ReadLine();
+            GetOption = Console.ReadLine();
 
-            while (!int.TryParse(Getoption, out userOption))
+            while (!int.TryParse(GetOption, out UserOption))
             {
                 Console.WriteLine("This is not a number!");
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
             }
-            if (userOption > 0 && userOption <= Usernames.Count)
+            if (UserOption > 0 && UserOption <= Usernames.Count)
             {
-                foreach (User u in Usernames)
+                foreach (User user in Usernames)
                 {
-                    if (userOption == u.customerID)
+                    if (UserOption == user.CustomerId)
                     {
                         Console.WriteLine("Enter Previous units:");
-                        prev = Console.ReadLine();
-                        while (!int.TryParse(prev, out prev1))
+                        Prev = Console.ReadLine();
+                        while (!int.TryParse(Prev, out Prev1))
                         {
                             Console.WriteLine("This is not a number!");
-                            prev = Console.ReadLine();
+                            Prev = Console.ReadLine();
                         }
-                        u.PreviousUnits = prev1;
+                        user.PreviousUnits = Prev1;
                         Console.WriteLine("Enter Current units:");
-                        current = Console.ReadLine();
-                        while (!int.TryParse(current, out current1))
+                        Current = Console.ReadLine();
+                        while (!int.TryParse(Current, out Current1))
                         {
                             Console.WriteLine("This is not a number!");
-                            current = Console.ReadLine();
+                            Current = Console.ReadLine();
                         }
-                        u.CurrentUnits = current1;
-                        while (u.CurrentUnits <= u.PreviousUnits)
+                        user.CurrentUnits = Current1;
+                        while (user.CurrentUnits <= user.PreviousUnits)
                         {
                             Console.WriteLine("Current Units should be greater than Previous units.");
-                            current = Console.ReadLine();
-                            u.CurrentUnits = int.Parse(current);
+                            Current = Console.ReadLine();
+                            user.CurrentUnits = int.Parse(Current);
                         }
+                        ListDisplay(Usernames);
                     }
                 }
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Customer not found");
             }
-            AdminOperation(Usernames);
+            
         }
 
         public void UpdateType(List<User> Usernames)
         {
+            ListDisplay(Usernames);
             Console.WriteLine("Enter the customer ID for which type has to be updated");
-            Getoption = Console.ReadLine();
+            GetOption = Console.ReadLine();
 
-            while (!int.TryParse(Getoption, out userOption))
+            while (!int.TryParse(GetOption, out UserOption))
             {
                 Console.WriteLine("This is not a number!");
-                Getoption = Console.ReadLine();
+                GetOption = Console.ReadLine();
             }
-            if (userOption > 0 && userOption <= Usernames.Count)
+            if (UserOption > 0 && UserOption <= Usernames.Count)
             {
-                foreach (User u in Usernames)
+                foreach (User user in Usernames)
                 {
-                    if (userOption == u.customerID)
+                    if (UserOption == user.CustomerId)
                     {
-                        u.customerType = new2.getType();
-                      
+                        user.CustomerType = New2.GetCustomerType();
+                        ListDisplay(Usernames);
                     }
                 }
             }else
             {
+                Console.Clear();
                 Console.WriteLine("Customer not found");
             }
-            AdminOperation(Usernames);
+            
         }
 
         public void ListDisplay(List<User> Usernames)
@@ -248,14 +288,14 @@ namespace Crud
             Console.WriteLine("-------------------------------------------------------------------");
             Console.WriteLine("ID\tName\tType\tPrev Units\tCurr Units");
             Console.WriteLine("-------------------------------------------------------------------");
-            foreach (User u in Usernames)
+            foreach (User user in Usernames)
             {
-                Console.WriteLine($"{u.customerID}\t{u.name}\t{u.customerType}\t{u.PreviousUnits}\t{u.CurrentUnits}");
+                Console.WriteLine($"{user.CustomerId}\t{user.Name}\t{user.CustomerType}\t{user.PreviousUnits}\t{user.CurrentUnits}");
             }
             Console.WriteLine("-------------------------------------------------------------------");
             Console.WriteLine();
             Console.WriteLine();
-            AdminOperation(Usernames);
+            
         }
     }
 }
