@@ -1,12 +1,12 @@
 ---------------------------TNEB------------------------------
 ---------------------------BILL------------------------------
-Date:30-10-2019					Time:02:57 PM
+Date:05-11-2019					Time:01:03 PM
 -------------------------------------------------------------------
-Consumer name:adsd				Consumer ID:11
-Consumer Address:sdafasdfs
+Consumer name:abc				Consumer ID:3
+Consumer Address:56 , MD street , Saidapet.
 -------------------------------------------------------------------
-Current consumption: 				 13120810
-Per unit charge: 				 10.3
+Current consumption: 				 131
+Per unit charge: 				 3.5
 -------------------------------------------------------------------
-Total charges: 					 135144343
+Total charges: 					 458.5
 -------------------------------------------------------------------
