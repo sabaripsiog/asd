@@ -25,14 +25,14 @@ namespace Lastsampleserver
         static void Main(string[] args)
         {
             Console.Title = "Server";
-            int count = 1;
+            int counter = 1;
             TcpListener ServerSocket = new TcpListener(IPAddress.Any, 5000);
             ServerSocket.Start();
             Console.WriteLine("Welcome to Chat room!!");
             Console.WriteLine("How many clients are going to connect to this server?:");
             int numberOfClients = int.Parse(Console.ReadLine());
 
-            for (count = 1; count <= numberOfClients; count++)
+            while(counter<=numberOfClients)
             {
                 TcpClient client = ServerSocket.AcceptTcpClient();
 
@@ -46,7 +46,8 @@ namespace Lastsampleserver
                 Thread t = new Thread(handle_clients);
                 t.Start(client_name);
 
-                Console.WriteLine($"Number of clients connected {count}");
+                Console.WriteLine($"Number of clients connected {counter}");
+                counter++;
             }
 
         }
