@@ -1,3 +1,7 @@
+class Devices
+{
+    
+}
 function Television(brand,inch,price)
 {
     this.brand = brand;
