@@ -14,7 +14,7 @@ html, body{
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    overflow-y: auto;
+    overflow-y: hidden;
     background-position: center;
     color: white;
     text-align: center;
@@ -50,16 +50,21 @@ html, body{
     width: 60%;
     position: relative;
     top: 50%;
-    left: 30%;
+    left: 32%;
     transform: translate(-50%,-50%);
     float: left;
     justify-content: right;
     font-size: 1.2em;
 }
-.container #profpic{
+img{
+    width:30%;
+    height: 82vh;
+    bottom:2em;
     position: relative;
     top: 15%;
+    padding-top: 5%;
     padding-bottom: 5%;
+    
 }
 @media screen and (max-width: 68em)
 {
@@ -82,5 +87,3 @@ html, body{
         width: 25em;
     }
 }
-
-
