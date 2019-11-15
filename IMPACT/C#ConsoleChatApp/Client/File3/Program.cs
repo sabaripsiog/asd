@@ -19,7 +19,8 @@ namespace Lastsampleclient
             try
             {
                 Console.Title = "Client";
-                IPAddress ip = IPAddress.Parse("192.168.153.57");
+                Console.WriteLine("Enter the server ip address to connect:");
+                IPAddress ip = IPAddress.Parse(Console.ReadLine());
                 int port = 5000;
 
                 TcpClient client = new TcpClient();
@@ -88,7 +89,8 @@ namespace Lastsampleclient
 
             catch (Exception e)
             {
-                Console.WriteLine("Server connection is closed" + e.Message);
+                Console.WriteLine("Server connection attempt failed" + e.Message);
+                Console.ReadKey();
             }
 
         }
@@ -98,7 +100,9 @@ namespace Lastsampleclient
 
         public class Conversation
         {
-
+            static string filename1 = "result";
+            static int count = 1;
+            static string ext = ".wav";
             public static void callfilecode(TcpClient client, string name, string s)
             {
                 try
@@ -192,7 +196,7 @@ namespace Lastsampleclient
                     mciSendString("record recsound", "", 0, 0);
                     Console.WriteLine("recording, press Enter to stop and save ...");
                     Console.ReadLine();
-                    mciSendString("save recsound C:\\Users\\Sabarish.a\\Desktop\\result.wav", "", 0, 0);
+                    mciSendString("save recsound C:\\Users\\Sabarish.a\\Desktop\\"+filename1+count+ext, "", 0, 0);
                     mciSendString("close recsound ", "", 0, 0);
                     //string sender;
                     if (s.Contains("/"))
@@ -207,8 +211,8 @@ namespace Lastsampleclient
                         Array.Clear(messageBuffer, 0, messageBuffer.Length);
 
 
-                        byte[] fileNameByte = Encoding.ASCII.GetBytes("result.wav");
-                        byte[] fileData = File.ReadAllBytes(filePath + "result.wav");
+                        byte[] fileNameByte = Encoding.ASCII.GetBytes(filename1 + count + ext);
+                        byte[] fileData = File.ReadAllBytes(filePath + filename1 + count + ext);
                         byte[] myData = new byte[4 + fileNameByte.Length + fileData.Length];
                         byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
                         fileNameLen.CopyTo(myData, 0);
@@ -231,8 +235,8 @@ namespace Lastsampleclient
                         //int count = 1;
 
                         //count++;
-                        byte[] fileNameByte = Encoding.ASCII.GetBytes("result.wav");
-                        byte[] fileData = File.ReadAllBytes(filePath + "result.wav");
+                        byte[] fileNameByte = Encoding.ASCII.GetBytes(filename1 + count + ext);
+                        byte[] fileData = File.ReadAllBytes(filePath + filename1 + count + ext);
                         byte[] myData = new byte[4 + fileNameByte.Length + fileData.Length];
                         byte[] fileNameLen = BitConverter.GetBytes(fileNameByte.Length);
                         fileNameLen.CopyTo(myData, 0);
@@ -242,9 +246,9 @@ namespace Lastsampleclient
                         Array.Clear(fileData, 0, fileData.Length);
 
                         Console.WriteLine("Audio has been recorded");
-                        Console.WriteLine("Voice note {0} has been sent.", "result.wav");
+                        Console.WriteLine("Voice note {0} has been sent.", "result" + count + ".wav");
                     }
-
+                    count++;
                 }
                 catch (Exception e)
                 {
@@ -287,8 +291,6 @@ namespace Lastsampleclient
 
         static void ReceiveData(TcpClient client)
         {
-
-
             while (true)
             {
                 try
