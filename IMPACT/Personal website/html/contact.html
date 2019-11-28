@@ -9,29 +9,45 @@
         <div class="container">
             <header>
                 <div class="navbar">
-                    <a class="a active" href="index.html">Home</a>
+                    <a class="a" href="index.html">Home</a>
                     <a class="b" href="aboutme.html">About me</a>
                     <a class="c" href="academics.html">Academics</a>
                     <a class="d" href="interests.html">Interests</a>
                     <a class="e" href="gallery.html">Gallery</a>
-                    <a class="e" href="contact.html">Contact</a>
+                    <a class="f active" href="contact.html">Contact</a>
                 </div>
             </header>
+            
             <form>
-                <table>
-                    <tr>
-                    <td>Full Name</td>
-                    <td><input type="text"></td>
-                    <tr><td>E-mail</td>
-                    <td><input type="text"></td></tr>
-                    <tr><td>Comments</td>
-                    <td><textarea name="comments" cols="30" rows="10"></textarea></td></tr>
-                </table>
-            </form>
-            <footer>
-                <p>Website developed by: Psiog Digital (P) Ltd.</p>
-                <img src="../images/psiog.png" alt="Psiog">
-            </footer>
+                <div class="row">
+                  <div class="col-25">
+                    <label for="fname">First Name</label>
+                  </div>
+                  <div class="col-75">
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-25">
+                    <label for="lname">Last Name</label>
+                  </div>
+                  <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-25">
+                    <label for="subject">Subject</label>
+                  </div>
+                  <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <input type="submit" value="Submit">
+                </div>
+              </form>
         </div>
     </body>
 </html>
