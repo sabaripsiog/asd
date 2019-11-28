@@ -119,7 +119,7 @@ namespace Lastsampleserver
                         }
                         else
                         {
-                            broadcast(data);
+                            broadcast(data,client);
                             myKey = list_clients.FirstOrDefault(x => x.Value == client).Key;
                             Console.WriteLine($"{myKey} sent a message.");
                         }
@@ -157,16 +157,17 @@ namespace Lastsampleserver
 
                         foreach (TcpClient c in list_clients.Values)
                         {
-                            //stream.Write(clientData, 0, clientData.Length);
-                            messagedata = "file";
-                            byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
-                            byte[] messageBuffer = new byte[messageByte.Length];
-                            messageByte.CopyTo(messageBuffer, 0);
-                            c.Client.Send(messageBuffer);
-                            Array.Clear(messageBuffer, 0, messageBuffer.Length);
-                            c.Client.Send(clientData);
-
-
+                            if (c != client)
+                            {
+                                //stream.Write(clientData, 0, clientData.Length);
+                                messagedata = "file";
+                                byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
+                                byte[] messageBuffer = new byte[messageByte.Length];
+                                messageByte.CopyTo(messageBuffer, 0);
+                                c.Client.Send(messageBuffer);
+                                Array.Clear(messageBuffer, 0, messageBuffer.Length);
+                                c.Client.Send(clientData);
+                            }
 
                         }
 
@@ -269,7 +270,7 @@ namespace Lastsampleserver
 
 
 
-        public static void broadcast(string data)
+        public static void broadcast(string data, TcpClient client)
         {
             byte[] buffer = Encoding.ASCII.GetBytes(data + Environment.NewLine);
 
@@ -277,21 +278,19 @@ namespace Lastsampleserver
 
             foreach (TcpClient c in list_clients.Values)
             {
-                string messagedata = "message";
-                byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
-                byte[] messageBuffer = new byte[messageByte.Length];
-                messageByte.CopyTo(messageBuffer, 0);
-                c.Client.Send(messageBuffer);
-                Array.Clear(messageBuffer, 0, messageBuffer.Length);
-            }
+                if (c != client)
+                {
+                    string messagedata = "message";
+                    byte[] messageByte = Encoding.ASCII.GetBytes(messagedata);
+                    byte[] messageBuffer = new byte[messageByte.Length];
+                    messageByte.CopyTo(messageBuffer, 0);
+                    c.Client.Send(messageBuffer);
+                    Array.Clear(messageBuffer, 0, messageBuffer.Length);
 
-
-
-            foreach (TcpClient c in list_clients.Values)
-            {
-                NetworkStream stream = c.GetStream();
-                stream.Write(buffer, 0, buffer.Length);
-                stream.Flush();
+                    NetworkStream stream = c.GetStream();
+                    stream.Write(buffer, 0, buffer.Length);
+                    stream.Flush();
+                }
             }
 
 
