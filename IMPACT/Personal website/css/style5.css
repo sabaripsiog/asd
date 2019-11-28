@@ -73,3 +73,7 @@ img{
         width: 100%;
     }
 }
+.container .navbar .active {
+    background-color: white;
+    color: black;
+  }
