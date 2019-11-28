@@ -84,3 +84,7 @@ p{
         width: 30em;
     }
 }
+.container .navbar .active {
+    background-color: white;
+    color: black;
+  }
