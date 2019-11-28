@@ -80,3 +80,7 @@ article{
         width: 25em;
     }
 }
+.container .navbar .active {
+    background-color: white;
+    color: black;
+  }
